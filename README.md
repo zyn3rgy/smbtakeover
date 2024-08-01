@@ -36,3 +36,4 @@ Create a Python virtual environment and `pip install` impacket.
 ### Credits
 - Python implementation is heavily based on the [wmiexec-Pro](https://github.com/XiaoliChan/wmiexec-Pro) project by [@Memory_before](https://x.com/Memory_before)
 - BOF implementation is heavily based on code within the [CS-Remote-OPs-BOF](https://github.com/trustedsec/CS-Remote-OPs-BOF/tree/main/src/Remote) repository, such as [sc_config](https://github.com/trustedsec/CS-Remote-OPs-BOF/blob/main/src/Remote/sc_config/entry.c), from the great folks at [@TrustedSec](https://x.com/trustedsec)
+- BOF makes use of the [bof-vs](https://github.com/Cobalt-Strike/bof-vs) template from [Fortra](https://x.com/fortraofficial)
