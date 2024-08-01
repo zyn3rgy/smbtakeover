@@ -1,0 +1,25 @@
+﻿  
+  Microsoft (R) Program Maintenance Utility Version 14.38.33133.0
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  
+  
+  Microsoft (R) Program Maintenance Utility Version 14.38.33133.0
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  
+  	cl /Zi /MTd /D_DEBUG /EHsc /std:c++17 /Fox64\Debug\ /Fdx64\Debug\ /Fe"..\x64\Debug\bof.exe" bof.cpp base/mock.cpp /link advapi32.lib
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.38.33133 for x64
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  
+  bof.cpp
+  mock.cpp
+  Generating Code...
+C:\Users\defaultuser\Desktop\bof-smbtakeover\bof-vs-main\bof-vs-main\BOF-Template\bof.cpp(314): warning C4715: 'CheckServiceStatus': not all control paths return a value
+C:\Users\defaultuser\Desktop\bof-smbtakeover\bof-vs-main\bof-vs-main\BOF-Template\bof.cpp(453): warning C4715: 'CheckProcessIntegrityLevel': not all control paths return a value
+  Microsoft (R) Incremental Linker Version 14.38.33133.0
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  
+  /debug 
+  /out:..\x64\Debug\bof.exe 
+  advapi32.lib 
+  x64\Debug\bof.obj 
+  x64\Debug\mock.obj 

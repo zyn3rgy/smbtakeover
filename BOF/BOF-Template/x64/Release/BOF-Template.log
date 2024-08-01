@@ -1,0 +1,20 @@
+﻿  
+  Microsoft (R) Program Maintenance Utility Version 14.38.33133.0
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  
+  
+  Microsoft (R) Program Maintenance Utility Version 14.38.33133.0
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  
+  	cl /c /GS- /std:c++17 /Fo"x64\Release\bof.obj" bof.cpp
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.38.33133 for x64
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  
+  bof.cpp
+C:\Users\defaultuser\Desktop\bof-smbtakeover_final\bof-vs-main\bof-vs-main\BOF-Template\bof.cpp(316): warning C4715: 'CheckServiceStatus': not all control paths return a value
+C:\Users\defaultuser\Desktop\bof-smbtakeover_final\bof-vs-main\bof-vs-main\BOF-Template\bof.cpp(455): warning C4715: 'CheckProcessIntegrityLevel': not all control paths return a value
+  	copy "x64\Release\\*.obj" "..\x64\Release\"
+  x64\Release\\bof.obj
+          1 file(s) copied.
+  	del /F "..\x64\Release\\*.x64.o"
+  	ren "..\x64\Release\*.obj" "*.x64.o"
