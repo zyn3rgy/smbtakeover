@@ -413,12 +413,12 @@ extern "C" {
 
 
 	DWORD CheckProcessIntegrityLevel() {
-		HANDLE hToken;
+		HANDLE hToken = INVALID_HANDLE_VALUE;
 		DWORD dwLengthNeeded;
 		DWORD dwError = ERROR_SUCCESS;
 		PTOKEN_MANDATORY_LABEL pTIL = NULL;
-		LPWSTR pStringSid;
 		DWORD dwIntegrityLevel;
+		DWORD dwReturnedIntegrityLevel = 0;
 
 		DFR_LOCAL(KERNEL32, OpenProcessToken);
 		DFR_LOCAL(ADVAPI32, GetTokenInformation);
@@ -441,24 +441,29 @@ extern "C" {
 							dwIntegrityLevel = *GetSidSubAuthority(pTIL->Label.Sid, (DWORD)(UCHAR)(*GetSidSubAuthorityCount(pTIL->Label.Sid) - 1));
 
 							if (dwIntegrityLevel >= SECURITY_MANDATORY_SYSTEM_RID) {
-								return SECURITY_MANDATORY_SYSTEM_RID;
+								dwReturnedIntegrityLevel =  SECURITY_MANDATORY_SYSTEM_RID;
 							} else if (dwIntegrityLevel == SECURITY_MANDATORY_HIGH_RID) {
-								return SECURITY_MANDATORY_HIGH_RID;
-							} else if (dwIntegrityLevel >= SECURITY_MANDATORY_SYSTEM_RID) {
-								return SECURITY_MANDATORY_SYSTEM_RID;
+								dwReturnedIntegrityLevel =  SECURITY_MANDATORY_HIGH_RID;
 							} else {
-								return SECURITY_MANDATORY_LOW_RID;
+								dwReturnedIntegrityLevel =  SECURITY_MANDATORY_LOW_RID;
 							}
 						}
-						LocalFree(pTIL);
+						goto cleanup;
 					}
 				}
 			}
-			CloseHandle(hToken);
+			goto cleanup;
 		} else {
 			BeaconPrintf(CALLBACK_OUTPUT, "[!] Failed to open process token for integrity level check.\n");
 			//std::cout << "Failed to open process token." << std::endl;
 		}
+		cleanup:
+		if (NULL != pTIL)
+			LocalFree(pTIL);
+		if (INVALID_HANDLE_VALUE != hToken)
+			CloseHandle(hToken);
+		
+		return dwReturnedIntegrityLevel;
 	}
 
     void go(char* args, int len) {
