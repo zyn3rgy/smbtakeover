@@ -6,7 +6,7 @@ PoCs written in both Python and BOF format. Both utilize RPC over TCP (ncacn_ip_
 
 ### Operational Usage Notes
 
-Please see **Operations Usage** section of the [associated blog post](https://posts.specterops.io/relay-your-heart-away-an-opsec-conscious-approach-to-445-takeover-1c9b4666c8ac) of the associated blog post for an overview of considerations. The highlights include:
+Please see **Operations Usage** section of the [associated blog post](https://posts.specterops.io/relay-your-heart-away-an-opsec-conscious-approach-to-445-takeover-1c9b4666c8ac) for an overview of considerations. The highlights include:
 1. Disabling these services effectively disables the target's ability to leverage namedpipes and and the server-side of SMB-based communication (CIFS, etc). Understand what the target machine is used for, especially if the target is critical / production infrastructure. The services will resume normal functionality once re-enabled.
 2. Occasionally there is slightly different series of services that need to be disabled. I've seen this occur in some version of Windows Server, as well as if certain third-party networking drivers are installed. This won't prevent you from using this technique. You can enumerate service dependencies backwards from `srvnet` and see if there are additional dependents to consider.
 3. You don't have to use this PoC to abuse this technique! Your favorite tool to interact with service control manager (SCM) should work.
